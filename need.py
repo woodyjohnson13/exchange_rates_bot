@@ -11,7 +11,7 @@ my_bot=Bot(token=bot_father_token)
 my_dispatcher=Dispatcher(bot=my_bot)
 
 
-codes_list=['USD','GEL']
+
 
 def my_func(code):
     standart_url=f"https://v6.exchangerate-api.com/v6/df0bb553472e34095631927e/latest/{code}"
@@ -31,10 +31,9 @@ def my_func(code):
 @my_dispatcher.message_handler(commands=['start'])
 async def start_handler(message: types.Message):
 
-    for items in codes_list:
-        instance=my_func(items)
-        await message.reply(f"Мазафакер,сейчас курс {instance['my_currensy']} к рублю равен {instance['to_rouble']}")
-    
+    usd=my_func('USD')
+    #await message.reply(f"Current rates are:")
+    await message.reply(f"Мазафакер,сейчас курс {usd['my_currensy']} к рублю равен {usd['to_rouble']}")
     
    
 
